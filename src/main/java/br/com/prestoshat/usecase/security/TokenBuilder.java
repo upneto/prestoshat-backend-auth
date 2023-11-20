@@ -32,7 +32,7 @@ public final class TokenBuilder {
 	public final String getToken(String usuario) {
 		return "Bearer " + Jwts.builder()
 				.setSubject(usuario)
-				.setIssuer("fmba-backent-user")
+				.setIssuer("prestoshat-backend-auth")
 				.setIssuedAt(new Date())
 				.setExpiration(Date.from(LocalDateTime.now().plusMinutes(60L).atZone(ZoneId.systemDefault()).toInstant()))
 				.signWith(Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8)))

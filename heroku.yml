@@ -8,14 +8,14 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
     networks:
-      - fmba-bridge
+      - prestoshat-bridge
     ports:
       - 5432:5432
     volumes:
       - db:/var/lib/postgres
 
   app_auth:
-    image: fmba-backend/auth:1.0
+    image: prestoshat-backend/auth:1.0
     container_name: app_auth
     restart: on-failure    
     build:      
@@ -30,10 +30,10 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update      
       - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect 
     networks:
-      - fmba-bridge
+      - prestoshat-bridge
 
 networks:
-  fmba-bridge:
+  prestoshat-bridge:
     driver: bridge
     
 volumes:
