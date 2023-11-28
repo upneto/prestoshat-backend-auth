@@ -20,9 +20,9 @@ public class UsuarioRequest implements Serializable {
 	 */
 	private static final long serialVersionUID = -2391924788274820395L;
 	
-	public String usuario;	
-	public String nome;
-	public String senha;
+	public String username;	
+	public String user;
+	public String passworld;
 	public String email;
 
 }

@@ -25,13 +25,13 @@ public class Rescue {
 	 * @throws BusinessException 
 	 */
 	public void doUpdateStatusToActive(RescueRequest usuario) throws DaoException, BusinessException {
-		Usuario user = this.service.findByEmail(usuario.getUsuario(), usuario.getEmail());
+		Usuario user = this.service.findByEmail(usuario.getUsername(), usuario.getEmail());
 		if(user == null) {
 			throw new BusinessException("Usuário não possui conta nessa aplicação!");
 		}
 		user.setStatus(Status.ATIVO.ordinal());
-		user.setDataAlteracao(new Date());
-		user.setErrorCount(0);
+		user.setDateLastAccess(new Date());
+		user.setAttempts(0);
 		this.service.update(user);
 	}
 }

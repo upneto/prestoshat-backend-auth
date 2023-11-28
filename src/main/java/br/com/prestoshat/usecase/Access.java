@@ -26,18 +26,18 @@ public class Access {
 	 * @throws BusinessException 
 	 */
 	public void doCreateAccess(UsuarioRequest request) throws DaoException, BusinessException {
-		Optional<Usuario> user = this.service.find(request.getUsuario());
-		if(user.isPresent() && user.get().getUsuario().equalsIgnoreCase(request.getUsuario())) {
+		Optional<Usuario> user = this.service.find(request.getUsername());
+		if(user.isPresent() && user.get().getUsername().equalsIgnoreCase(request.getUsername())) {
 			throw new BusinessException("Usuário já possui conta de acesso nessa aplicação!");
 		}
 		this.service.insert(Usuario.builder()
-			.usuario(request.getUsuario())
-			.nome(request.getNome())
-			.senha(request.getSenha())
+			.username(request.getUsername())
+			.user(request.getUser())
+			.password(request.getPassworld())
 			.email(request.getEmail())
-			.errorCount(0)
+			.attempts(0)
 			.status(Status.ATIVO.ordinal())
-			.dataCriacao(new Date())
+			.dateCreated(new Date())
 			.build());
 	}
 }

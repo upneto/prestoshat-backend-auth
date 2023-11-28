@@ -32,21 +32,20 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 2084772178752768214L;
 	
 	@Id	
-	private String usuario;
-	private String senha;
+	private String username;
+	private String password;
 	
-	private String nome;
-	private String email;
-	
-	private int errorCount;
-	private int status;	
+	private String user;
+	private String email;	
+	private int status;
+	private int attempts;	
 	
 	@Column(name="data_criacao")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataCriacao;	
+	private Date dateCreated;	
 	@Column(name="data_alteracao")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataAlteracao;
+	private Date dateLastAccess;
 	
 	/**
 	 * @return

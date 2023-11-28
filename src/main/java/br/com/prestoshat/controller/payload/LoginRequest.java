@@ -20,7 +20,7 @@ public class LoginRequest implements Serializable {
 	 */
 	private static final long serialVersionUID = -5966013488267819053L;
 	
-	private String usuario;
-	private String senha;
+	private String username;
+	private String password;
 
 }

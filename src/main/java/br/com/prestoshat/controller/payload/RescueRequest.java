@@ -19,6 +19,6 @@ public class RescueRequest implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 402199062888920839L;
-	private String usuario;
+	private String username;
 	private String email;	
 }

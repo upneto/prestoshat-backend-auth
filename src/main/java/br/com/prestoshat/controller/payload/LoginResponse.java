@@ -20,7 +20,7 @@ public class LoginResponse implements Serializable  {
 	 */
 	private static final long serialVersionUID = -8966181192632870974L;
 
-	private String usuario;
-	private String nome;
+	private String username;
+	private String user;
 	private String token;
 }

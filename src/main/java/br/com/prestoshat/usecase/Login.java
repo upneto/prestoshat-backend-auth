@@ -31,9 +31,9 @@ public class Login {
 	 * @throws BusinessException
 	 */
 	public LoginResponse doLogin(LoginRequest request) throws DaoException, LoginException {		
-		Usuario usuario = this.service.findByLogin(request.getUsuario(), request.getSenha());
+		Usuario usuario = this.service.findByLogin(request.getUsername(), request.getPassword());
 		if(usuario == null) {	
-			this.updateLoginErrorCount(request.getUsuario());
+			this.updateLoginErrorCount(request.getUsername());
 			throw new LoginException("Usuário e(ou) Senha inválidos!");
 		}
 		else if (usuario.convertStatusToEnum().equals(Status.BLOQUEADO)) {
@@ -43,9 +43,9 @@ public class Login {
 			throw new LoginException("Usuário não possui permissão para acessar o sistema!");
 		}
 		return LoginResponse.builder()
-				.usuario(usuario.getUsuario())
-				.nome(usuario.getNome())
-				.token(TokenBuilder.getInstance().getToken(usuario.getUsuario())) 
+				.username(usuario.getUsername())
+				.user(usuario.getUser())
+				.token(TokenBuilder.getInstance().getToken(usuario.getUsername())) 
 				.build();
 	}
 	
@@ -71,14 +71,14 @@ public class Login {
 			return;
 		}	
 		Usuario usuarioUp = user.get();
-		int errorCount = usuarioUp.getErrorCount();
+		int errorCount = usuarioUp.getAttempts();
 		if(errorCount < 3) {
-			usuarioUp.setErrorCount(errorCount + 1);
+			usuarioUp.setAttempts(++errorCount);
 		} 
 		else {
 			usuarioUp.setStatus(Status.BLOQUEADO.ordinal());
 		}
-		usuarioUp.setDataAlteracao(new Date());
+		usuarioUp.setDateLastAccess(new Date());
 		this.service.update(usuarioUp);
 	}	
 }
